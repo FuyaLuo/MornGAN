@@ -1,4 +1,0 @@
-Both video sequences are from folder "video" of the FLIR dataset, and two compared methods are CycleGAN [1] and PearlGAN [2]. Due to file size limitation, the range of frame indexes for the video sequences are [410, 560] and [1355, 1505], respectively.
-
-[1] Zhu J Y, Park T, Isola P, et al. Unpaired image-to-image translation using cycle-consistent adversarial networks[C]//Proceedings of the IEEE international conference on computer vision. 2017: 2223-2232.
-[2] Luo F, Li Y, Zeng G, et al. Thermal infrared image colorization for nighttime driving scenes with top-down guided attention[J]. IEEE Transactions on Intelligent Transportation Systems, 2022, 23(9): 15808-15823.
