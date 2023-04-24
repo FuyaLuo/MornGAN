@@ -1,0 +1,1 @@
+Both video sequences are from folder "video" of the FLIR dataset, and the indexes of the corresponding frame images are [410, 560] and [1355, 1505], respectively.
