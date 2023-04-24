@@ -6,12 +6,12 @@ Pytorch implementation of the paper "Memory-Guided Collaborative Attention for N
   <summary>
     <b>1) Example 1</b>
   </summary>
-![CycleGAN](https://github.com/FuyaLuo/MornGAN/blob/main/Qualitative%20comparison%20of%20video%20translation/CycleGAN_video1.gif)![PearlGAN](https://github.com/FuyaLuo/MornGAN/blob/main/Qualitative%20comparison%20of%20video%20translation/PearlGAN_video1.gif)![MornGAN](https://github.com/FuyaLuo/MornGAN/blob/main/Qualitative%20comparison%20of%20video%20translation/MornGAN_video1.gif)
+![CycleGAN](https://github.com/FuyaLuo/MornGAN/blob/main/Qualitative%20comparison%20of%20video%20translation/CycleGAN_video1.gif)
 </details>
 
 <details>
   <summary>
     <b>2) Example 2</b>
   </summary>
-![CycleGAN](https://github.com/FuyaLuo/MornGAN/blob/main/Qualitative%20comparison%20of%20video%20translation/CycleGAN_video2.gif)![PearlGAN](https://github.com/FuyaLuo/MornGAN/blob/main/Qualitative%20comparison%20of%20video%20translation/PearlGAN_video2.gif)![MornGAN](https://github.com/FuyaLuo/MornGAN/blob/main/Qualitative%20comparison%20of%20video%20translation/MornGAN_video2.gif)
+![CycleGAN](https://github.com/FuyaLuo/MornGAN/blob/main/Qualitative%20comparison%20of%20video%20translation/CycleGAN_video2.gif)
 </details>
