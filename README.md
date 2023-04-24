@@ -13,5 +13,5 @@ Pytorch implementation of the paper "Memory-Guided Collaborative Attention for N
   <summary>
     <b>2) Example 2</b>
   </summary>
-![CycleGAN](https://github.com/FuyaLuo/MornGAN/blob/main/Qualitative%20comparison%20of%20video%20translation/CycleGAN_video2.gif)
+![CycleGAN](https://github.com/FuyaLuo/MornGAN/blob/main/VideoResults/CycleGAN_video2.gif)
 </details>
