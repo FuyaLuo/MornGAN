@@ -22,8 +22,6 @@ class EBGCDataset(BaseDataset):
             self.Vis_edge_paths = opt.Vis_edge_path
             self.Vis_mask_paths = opt.Vis_mask_path
             self.IR_FG_txt = opt.IR_FG_txt
-            # self.Vis_FG_txt = opt.Vis_FG_txt
-            # self.FB_FG_Sample_txt = opt.FB_FG_Sample_txt
             self.num_class = opt.num_class
             self.IR_memory_txt = opt.IR_patch_classratio_txt
 
@@ -59,7 +57,6 @@ class EBGCDataset(BaseDataset):
         img_new = Image.fromarray(np.uint8(img))
         img_res = transform_new(img_new)
         edge_map = edge_map / 255.0
-        # seg_mask = np.asarray(Image.fromarray(seg_mask).resize((128, 128), Image.NEAREST), dtype=np.int64)
         seg_mask = np.asarray(Image.fromarray(seg_mask), dtype=np.int64)
         # print(seg_mask)
 
@@ -92,9 +89,6 @@ class EBGCDataset(BaseDataset):
             edge_map_crop = edge_map_crop[:,::-1]
             seg_mask_crop = seg_mask_crop[:,::-1]
 
-        # for func in self.night_edge_transform:
-        #     img, edge_map, seg_mask = func(img, edge_map, seg_mask)
-        # img = img.transpose(2, 0, 1) / 255.0
         transform_list_torch = [transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
         transform_new = transforms.Compose(transform_list_torch)
         # img = torch.from_numpy(img_file.transpose((2, 0, 1)))
@@ -103,8 +97,6 @@ class EBGCDataset(BaseDataset):
         # print(img_res.size)
         edge_map_crop = edge_map_crop / 255.0
         seg_mask_crop = np.asarray(Image.fromarray(seg_mask_crop), dtype=np.int64)
-        # seg_mask_crop = np.asarray(Image.fromarray(seg_mask_crop).resize((128, 128), Image.NEAREST), dtype=np.int64)
-        # print(seg_mask)
 
         return img_res, path, torch.tensor(edge_map_crop), seg_mask_crop.copy()
 
