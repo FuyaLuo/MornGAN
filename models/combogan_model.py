@@ -353,10 +353,6 @@ class ComboGANModel(BaseModel):
         self.fake_B_pred_d, _ = self.netS.forward(fake_B_s.detach(), self.DB)
         self.fake_A_pred_d, _ = self.netS.forward(fake_A_s.detach(), self.DA)
 
-        """
-        Training SegNet of Vis and IR with input detach, then updating Vis Seg GT to train with input detach. After that,
-        updating FG Discriminator with the help of SegNet and freezzing SegNet parameters to update fake Vis and IR image translation.
-        """
         if self.DB_GT_update_idx == 0.0:
             #0-40 epoch
             self.loss_S_rec[self.DB] = 0.0
