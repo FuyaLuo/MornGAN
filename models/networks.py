@@ -760,8 +760,8 @@ def CondGradRepaLoss(fake_img, fake_mask, real_IR, gpu_ids=[]):
 
 
 def FakeIRPersonLossv2(Seg_mask, fake_IR, real_vis, gpu_ids=[]):
-    "Encouraging the min value of the pedestrian region in the fake IR image "
-    "to be larger than the mean value of the vegetation region. "
+    "Temperature regularization term: Encouraging the min value of the pedestrian region in the fake IR image "
+    "to be larger than the mean value of the road region. "
 
     # b, c, h, w = fake_IR.size()
 
@@ -771,14 +771,11 @@ def FakeIRPersonLossv2(Seg_mask, fake_IR, real_vis, gpu_ids=[]):
     # real_mask_resize = F.interpolate(real_mask.expand(1, 1, seg_h, seg_w).float(), size=[h, w], mode='nearest')
     GT_mask = GT_mask_resize[0]
     person_mask = torch.zeros_like(GT_mask_resize)
-    # light_mask = torch.zeros_like(GT_mask_resize)
     person_mask = torch.where(GT_mask_resize == 11, torch.ones_like(GT_mask_resize), torch.zeros_like(GT_mask_resize))
-    light_mask = torch.where(GT_mask_resize == 6, torch.ones_like(GT_mask_resize), torch.zeros_like(GT_mask_resize))
 
     fake_img_norm = (fake_IR + 1.0) * 0.5
     real_img_norm = (real_vis + 1.0) * 0.5
     fake_IR_gray = .299 * fake_img_norm[:,0:1,:,:] + .587 * fake_img_norm[:,1:2,:,:] + .114 * fake_img_norm[:,2:3,:,:]
-    # real_vis_gray = .299 * real_img_norm[:,0:1,:,:] + .587 * real_img_norm[:,1:2,:,:] + .114 * real_img_norm[:,2:3,:,:]
     fake_mean_fea, fake_cls_tensor, _ = ClsMeanPixelValue(fake_IR_gray, Seg_mask.detach(), 19, gpu_ids)
     if (fake_cls_tensor[11, :] * fake_cls_tensor[0, :]) > 0 :
         person_region = (person_mask.expand_as(fake_IR_gray)).mul(fake_IR_gray)
@@ -786,10 +783,7 @@ def FakeIRPersonLossv2(Seg_mask, fake_IR, real_vis, gpu_ids=[]):
         person_region_padding1 = person_region + non_person_mask ####To get person region min value
         road_mean_value = (fake_mean_fea[0, :]).detach()
         person_min_value = torch.min(person_region_padding1)
-        # person_mean_value = fake_mean_fea[11, :]
-        # person_dis_loss = F.relu(road_mean_value - person_min_value)
         person_dis_loss = F.relu(road_mean_value - person_min_value) / (road_mean_value + 1e-4)
-        # person_dis_loss = F.relu(veg_mean_value - person_mean_value) + (veg_mean_value - person_min_value) ** 2
     else:
         person_dis_loss = 0.0
 
