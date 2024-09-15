@@ -26,14 +26,14 @@ Pytorch implementation of the paper "Memory-Guided Collaborative Attention for N
 >Robust imaging under challenging conditions, such as starlit nights, has broadened the adoption of thermal infrared (TIR) cameras for nighttime driving scenes. Given that TIR images are monochromatic, which makes them difficult to interpret by humans and limits the applicability of RGB-based algorithms, it is reasonable to perform colorization of nighttime TIR (NTIR) images by converting them into corresponding daytime color images (NTIR2DC). Despite the impressive results achieved by previous NTIR2DC methods, how to improve the colorization performance of small-sample categories without semantic annotation is under-explored. To address this issue, we propose a novel learning framework called Memory-guided cOllaboRative atteNtion Generative Adversarial Network (MornGAN), which is inspired by the analogical reasoning mechanisms of humans. Specifically, we first propose an online semantic distillation module to mine and refine the semantic cues of NTIR images. Then, a memory-guided sample selection strategy and adaptive collaborative attention loss are devised to enhance the semantic preservation of small-sample categories. Further, a new conditional gradient repair loss is introduced for reducing edge distortion during translation. Extensive experiments on the NTIR2DC task show that the proposed MornGAN significantly outperforms other image-to-image translation methods in terms of semantic preservation and edge consistency, which helps improve the object detection accuracy remarkably. 
 
 ## Prerequisites
-* Python 3.6 
-* Pytorch 1.1.0 and torchvision 0.3.0 
+* Python 3.8 
+* Pytorch 1.7.1 and torchvision 0.8.2 
 * TensorboardX
 * visdom
 * dominate
 * pytorch-msssim
 * kmeans_pytorch
-* CUDA 10.0.130, CuDNN 7.3, and Ubuntu 16.04.
+* CUDA 11.6.55, CuDNN 8.4, and Ubuntu 20.04.
 
 ## Data Preparation 
 Download [FLIR](https://www.flir.co.uk/oem/adas/adas-dataset-form/) and [KAIST](https://soonminhwang.github.io/rgbt-ped-detection/data/). First, the corresponding training set and test set images are sampled according to the txt files in the `./img_list/` folder. Then, all images are first resized to 500x400, and then crop centrally to obtain images with a resolution of 360x288. Note that due to negligent checking by the authors, the test set images for the KAIST dataset only need to be center cropped to 360x288 without a resize step. Finally, place all images into the corresponding dataset folders. Domain A and domain B correspond to the daytime visible image and the nighttime TIR image, respectively. As an example, the corresponding folder structure for the FLIR dataset is:
